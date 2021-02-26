@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">ArticleGenerator</string>
+    <string name="generate_text">Generate Text</string>
+    <string name="thesaurus">Thesaurus</string>
+    <string name="setting">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="famous_quotes">Famous Quotes</string>
+    <string name="crap_words">Crap words</string>
+    <string name="head_of_sentence">head of sentence</string>
+    <string name="end_of_sentence">end of sentence</string>
+    <string name="no_data">no data</string>
+    <string name="wait">Data is being prepared, please keep your internet connection</string>
+    <string name="success">success</string>
+    <string name="add">add</string>
+    <string name="cancel">cancel</string>
+    <string name="content">content</string>
+    <string name="person_name">person name</string>
+    <string name="not_be_empty">Cannot be empty</string>
+    <string name="commit">Submit</string>
+    <string name="reset_thres">reset thesaurus</string>
+    <string name="are_you_sure">Are you sure you want to reset your thesaurus?</string>
+    <string name="fail">Failed to get data, please contact the developer</string>
+    <string name="link"><u>https://github.com/AManCallJiang/ArticleGenerator</u></string>
+    <string name="email"><u>1396275290@qq.com</u></string>
+    <string name="about">about</string>
+    <string name="select_send_app">Please select the application for sending emails</string>
+    <string name="keyword">keyword</string>
+    <string name="word_count">word count:</string>
+</resources>

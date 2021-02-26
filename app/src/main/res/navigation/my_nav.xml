@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jiang.articlegenerator.ui.fragment.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_generateTextFragment"
+            app:destination="@id/generateTextFragment2"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_thesaurusFragment"
+            app:destination="@id/thesaurusFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/generateTextFragment2"
+        android:name="com.jiang.articlegenerator.ui.fragment.GenerateTextFragment"
+        android:label="@string/generate_text"
+        tools:layout="@layout/fragment_generate_text" />
+    <fragment
+        android:id="@+id/thesaurusFragment"
+        android:name="com.jiang.articlegenerator.ui.fragment.ThesaurusFragment"
+        android:label="@string/thesaurus"
+        tools:layout="@layout/fragment_thesaurus" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.jiang.articlegenerator.ui.fragment.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.jiang.articlegenerator.ui.fragment.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/fragment_about" />
+</navigation>

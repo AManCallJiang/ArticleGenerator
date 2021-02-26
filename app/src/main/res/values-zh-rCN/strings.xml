@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">文章生成器</string>
+	<string name="generate_text">生成文本</string>
+	<string name="thesaurus">词库</string>
+	<string name="setting">设置</string>
+	<string name="hello_blank_fragment">你好空白片段</string>
+	<string name="famous_quotes">名言</string>
+	<string name="crap_words">废话</string>
+	<string name="head_of_sentence">句首</string>
+	<string name="end_of_sentence">句尾</string>
+	<string name="no_data">没有数据</string>
+	<string name="wait">数据正在准备，请保持互联网连接</string>
+	<string name="success">成功</string>
+	<string name="add">添加</string>
+	<string name="cancel">取消</string>
+	<string name="content">内容</string>
+	<string name="person_name">人名</string>
+	<string name="not_be_empty">不能为空</string>
+	<string name="commit">提交</string>
+	<string name="reset_thres">重置词库</string>
+	<string name="are_you_sure">你确定要重置你的词库吗？</string>
+	<string name="fail">无法获取数据，请联系开发人员</string>
+	<string name="link"><u>https://github.com/AManCallJiang/ArticleGenerator</u></string>
+	<string name="email"><u>1396275290@qq.com</u></string>
+	<string name="about">关于</string>
+	<string name="select_send_app">请选择发送电子邮件的应用程序</string>
+	<string name="keyword">关键词（中心主题）</string>
+	<string name="word_count">文章字数：</string>
+</resources>
