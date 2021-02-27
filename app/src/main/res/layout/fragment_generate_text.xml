@@ -7,27 +7,26 @@
     tools:context=".ui.fragment.GenerateTextFragment">
 
     <ScrollView
-        android:background="@drawable/bg_et"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_et"
+        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@+id/et_keyword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-       >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textIsSelectable="true" />
+            android:textColor="@android:color/primary_text_light"
+            android:textIsSelectable="true"
+            android:textSize="16sp" />
     </ScrollView>
 
     <EditText
@@ -58,6 +57,7 @@
 
     <Spinner
         android:id="@+id/spinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginBottom="24dp"
