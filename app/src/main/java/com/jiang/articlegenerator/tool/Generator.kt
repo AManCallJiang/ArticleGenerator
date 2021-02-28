@@ -1,5 +1,6 @@
 package com.jiang.articlegenerator.tool
 
+import android.util.Log
 import com.jiang.articlegenerator.database.DatabaseManager
 import com.jiang.articlegenerator.model.*
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import java.security.SecureRandom
  */
 
 object Generator {
+    private const val TAG = "Generator"
     private const val CHANCE_FAMOUS = 30
     private const val CHANCE_KEYWORD = 90
     private val stringBuilder by lazy { StringBuilder() }
@@ -31,47 +33,56 @@ object Generator {
     private var endSize = 0
     suspend fun generate(keyWord: String, wordCount: Int): String {
         return withContext(Dispatchers.IO) {
-            stringBuilder.clear()
-            fqList.clear()
-            fqList.addAll(DatabaseManager.famousQuotesDao.queryAll())
-            if (fqList.isEmpty()) {
-                return@withContext "名人名言库为空，生成错误！"
-            }
-            crapList.clear()
-            crapList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_CRAP))
-            if (crapList.isEmpty()) {
-                return@withContext "废话词库为空，生成错误！"
-            }
-            headList.clear()
-            headList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_HEAD))
-            if (headList.isEmpty()) {
-                return@withContext "句首库为空，生成错误！"
-            }
-            endList.clear()
-            endList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_END))
-            if (endList.isEmpty()) {
-                return@withContext "句尾库为空，生成错误！"
-            }
-
-            crapSize= crapList.lastIndex
-            headSize = headList.lastIndex
-            endSize = endList.lastIndex
-
-            //开头格式
-            stringBuilder.append("\u3000\u3000")
-            while (stringBuilder.length < wordCount) {
-                val chance = random.nextInt(100)
-                when {
-                    chance <= CHANCE_FAMOUS -> useFamousQuote()
-                    chance <= CHANCE_KEYWORD -> {
-                        //围绕关键词
-                        stringBuilder.append(crapList[random.nextInt(crapSize)].remakeCrap(keyWord))
-                        useFamousQuote()
-                    }
-                    else -> stringBuilder.append("\n\u3000\u3000")//换行
+            try {
+                stringBuilder.clear()
+                fqList.clear()
+                fqList.addAll(DatabaseManager.famousQuotesDao.queryAll())
+                if (fqList.isEmpty()) {
+                    return@withContext "名人名言库为空，生成错误！"
                 }
+                crapList.clear()
+                crapList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_CRAP))
+                if (crapList.isEmpty()) {
+                    return@withContext "废话词库为空，生成错误！"
+                }
+                headList.clear()
+                headList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_HEAD))
+                if (headList.isEmpty()) {
+                    return@withContext "句首库为空，生成错误！"
+                }
+                endList.clear()
+                endList.addAll(DatabaseManager.crapWordsDao.queryByType(ENTITY_TYPE_END))
+                if (endList.isEmpty()) {
+                    return@withContext "句尾库为空，生成错误！"
+                }
+
+                crapSize = crapList.lastIndex
+                headSize = headList.lastIndex
+                endSize = endList.lastIndex
+
+                //开头格式
+                stringBuilder.append("\u3000\u3000")
+                while (stringBuilder.length < wordCount) {
+                    val chance = random.nextInt(100)
+                    when {
+                        chance <= CHANCE_FAMOUS -> useFamousQuote()
+                        chance <= CHANCE_KEYWORD -> {
+                            //围绕关键词
+                            stringBuilder.append(
+                                crapList[random.nextInt(crapSize)].remakeCrap(
+                                    keyWord
+                                )
+                            )
+                            useFamousQuote()
+                        }
+                        else -> stringBuilder.append("\n\u3000\u3000")//换行
+                    }
+                }
+                return@withContext stringBuilder.toString()
+            } catch (e: Exception) {
+                Log.e(TAG, "generate: ${e.localizedMessage}", e)
+                return@withContext e.localizedMessage
             }
-            return@withContext stringBuilder.toString()
         }
     }
 
@@ -81,7 +92,14 @@ object Generator {
             fqList.addAll(DatabaseManager.famousQuotesDao.queryAll())
         }
         //随机引用，用过就移出随机池
-        val choice: Int = random.nextInt(fqList.lastIndex)
+        val lastIndex = fqList.lastIndex
+        Log.d(TAG, "useFamousQuote: $lastIndex")
+        val choice: Int = if (lastIndex == 0) {
+            0
+        } else {
+            random.nextInt(lastIndex)
+        }
+
         val removeAt = fqList.removeAt(choice)
 
         stringBuilder.append(removeAt.famousPerson.replace(" ", ""))
